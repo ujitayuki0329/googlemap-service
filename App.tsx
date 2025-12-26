@@ -32,8 +32,10 @@ const App: React.FC = () => {
     try {
       const data = await discoverVibes(query, location);
       setResult(data);
-    } catch (err) {
-      setError("スカウト中にエラーが発生しました。もう一度お試しください。");
+    } catch (err: any) {
+      console.error("Search error:", err);
+      const errorMessage = err?.message || "スカウト中にエラーが発生しました。もう一度お試しください。";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

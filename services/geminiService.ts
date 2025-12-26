@@ -3,7 +3,13 @@ import { GoogleGenAI } from "@google/genai";
 import { Location, SearchResult } from "../types";
 
 export const discoverVibes = async (vibeQuery: string, location: Location | null): Promise<SearchResult> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
+  
+  if (!apiKey) {
+    throw new Error("APIキーが設定されていません。.env.localファイルにGEMINI_API_KEYを設定してください。");
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
   
   const systemInstruction = `
     あなたは「VibeScout」という都市キュレーションのエキスパートです。単なるビジネスのカテゴリーではなく、照明、音楽、インテリア、客層などの具体的な「雰囲気（バイブス）」に基づいて場所を見つけるのが得意です。
@@ -44,8 +50,9 @@ export const discoverVibes = async (vibeQuery: string, location: Location | null
       text: response.text || "このエリアでは条件に合う場所が見つかりませんでした。",
       sources: response.candidates?.[0]?.groundingMetadata?.groundingChunks || []
     };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini Error:", error);
-    throw error;
+    const errorMessage = error?.message || "不明なエラーが発生しました";
+    throw new Error(`Gemini API エラー: ${errorMessage}`);
   }
-};
+}
