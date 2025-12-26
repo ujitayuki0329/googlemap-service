@@ -1,0 +1,7 @@
+{
+  "name": "VibeScout - 雰囲気で探す場所発見エンジン",
+  "description": "GeminiのGoogle Maps groundingを活用し、特定の気分や「雰囲気」に基づいて隠れた名所を見つける革新的なマップ検索アプリです。",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
