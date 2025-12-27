@@ -52,27 +52,27 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center bg-[#0f172a] selection:bg-indigo-500/30">
       {/* Header / Monetization Banner */}
-      <header className="w-full max-w-5xl px-6 py-6 flex justify-between items-center border-b border-slate-800">
-        <div className="flex items-center gap-2 group cursor-default">
-          <div className="p-2 bg-indigo-600 rounded-xl group-hover:rotate-12 transition-transform">
-            <Compass className="w-6 h-6 text-white" />
+      <header className="w-full max-w-5xl px-4 sm:px-6 py-4 sm:py-6 flex justify-between items-center border-b border-slate-800 gap-2">
+        <div className="flex items-center gap-2 group cursor-default flex-shrink-0">
+          <div className="p-1.5 sm:p-2 bg-indigo-600 rounded-xl group-hover:rotate-12 transition-transform">
+            <Compass className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">VibeScout</h1>
+          <h1 className="text-lg sm:text-2xl font-bold tracking-tight text-white">VibeScout</h1>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
           <button 
             onClick={() => setIsPremium(!isPremium)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+            className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
               isPremium 
                 ? 'bg-amber-400/10 text-amber-400 border border-amber-400/20' 
                 : 'bg-indigo-600 text-white hover:bg-indigo-700'
             }`}
           >
             {isPremium ? (
-              <><Crown className="w-4 h-4" /> バイブマスター有効</>
+              <><Crown className="w-3 h-3 sm:w-4 sm:h-4" /> <span className="hidden sm:inline">バイブマスター有効</span><span className="sm:hidden">有効</span></>
             ) : (
-              <><DollarSign className="w-4 h-4" /> プレミアムにアップグレード</>
+              <><DollarSign className="w-3 h-3 sm:w-4 sm:h-4" /> <span className="hidden sm:inline">プレミアムにアップグレード</span><span className="sm:hidden">プレミアム</span></>
             )}
           </button>
         </div>
@@ -95,15 +95,15 @@ const App: React.FC = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="どんな雰囲気の場所を探していますか？ (例: ベルベットの椅子がある落ち着いたバー)"
-                className="w-full bg-slate-900 border-2 border-slate-800 rounded-2xl py-4 px-12 focus:border-indigo-500 focus:outline-none transition-all placeholder:text-slate-600 text-white shadow-2xl group-hover:border-slate-700"
+                className="w-full bg-slate-900 border-2 border-slate-800 rounded-2xl py-3 sm:py-4 pl-10 sm:pl-12 pr-20 sm:pr-24 focus:border-indigo-500 focus:outline-none transition-all placeholder:text-slate-600 text-white shadow-2xl group-hover:border-slate-700 text-sm sm:text-base"
               />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+              <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-slate-500" />
               <button
                 type="submit"
                 disabled={loading}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-700 text-white px-6 py-2 rounded-xl font-medium transition-all"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-700 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-xl font-medium transition-all text-sm sm:text-base"
               >
-                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : '探す'}
+                {loading ? <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" /> : '探す'}
               </button>
             </div>
           </form>
